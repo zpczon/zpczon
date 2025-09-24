@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Candidate Form - Z+ Cyber Zone</title>
+  <link rel="stylesheet" href="style.css">
+  <script>
+    function sendToWhatsApp() {
+      let name = document.getElementById("name").value;
+      let fname = document.getElementById("fname").value;
+      let mname = document.getElementById("mname").value;
+      let address = document.getElementById("address").value;
+      let 10th = document.getElementById("10th").value;
+      let 12th = document.getElementById("12th").value;
+      let B.A/B.Com/B.Sc = document.getElementById("b.a/b.com/b.sc").value;
+      let M.A/M.Com/M.Sc = document.getElementById("m.a/m.com/m/sc").value;
+      let other if any = document.getElementById("other if any").value;
+      let other if any = document.getElementById("other if any").value;
+      let email = document.getElementById("email").value;
+      let phone = document.getElementById("phone").value;
+
+      let msg = `Candidate Information:%0A
+Name: ${name}%0A
+Father's Name: ${fname}%0A
+Mother's Name: ${mname}%0A
+Address: ${address}%0A
+10Th: ${10th}%0A
+12Th: ${12th}%0A
+B.A/B.Com/B.Sc: ${b.a/b.com/b.sc}%0A
+M.A/M.Com/M.Sc: ${m.a/m.com/m/sc}%0A
+Other If Any: ${other if any}%0A
+Other If Any: ${other if any}%0A
+Email: ${email}%0A
+Mobile: ${phone}`;
+
+      // यहाँ अपना WhatsApp नंबर डालें (91 + नंबर)
+      let whatsappURL = "https://wa.me/919709524515?text=" + msg;
+
+      window.open(whatsappURL, "_blank");
+    }
+  </script>
+</head>
+<body>
+  <div class="form-container">
+    <h2>Candidate Information Form</h2>
+    <form onsubmit="sendToWhatsApp(); return false;">
+      <label>Full Name:</label>
+      <input type="text" id="name" required><br>
+
+      <label>Father's Name:</label>
+      <input type="text" id="fname" required><br>
+
+      <label>Mother's Name:</label>
+      <input type="text" id="mname" required><br>
+
+      <label>Address:</label>
+      <textarea id="address" required></textarea><br>
+
+      <label>10Th:</label>
+      <input type="text" id="10th" required><br>
+
+      <label>12Th:</label>
+      <input type="text" id="12th" required><br>
+
+      <label>B.A/B.Com/B.Sc:</label>
+      <input type="text" id="b.a/b.com/b.sc" required><br>
+
+      <label>M.A/M.Com/M.Sc:</label>
+      <input type="text" id="m.a/m.com/m/sc" required><br>
+
+      <label>Other If Any:</label>
+      <input type="text" id="other if any" required><br>
+
+      <label>Other If Any:</label>
+      <input type="text" id="other if any" required><br>
+
+
+      <label>Email:</label>
+      <input type="email" id="email"><br>
+
+      <label>Mobile:</label>
+      <input type="tel" id="phone" required><br><br>
+
+      <button type="submit">Submit via WhatsApp</button>
+    </form>
+  </div>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>PDF Resizer - Z+ Cyber Zone</title>
+<link rel="stylesheet" href="resizer.css"/>
+</head>
+<body>
+  <main class="wrap">
+    <h1>PDF Resizer Tool</h1>
+    <section class="panel">
+      <label>Upload PDF (max ~50MB)</label>
+      <input type="file" id="pdfFile" accept="application/pdf">
+      <label>Target Size</label>
+      <select id="targetSize">
+        <option value="20000">20 KB</option>
+        <option value="50000">50 KB</option>
+        <option value="100000">100 KB</option>
+        <option value="200000">200 KB</option>
+        <option value="500000">500 KB</option>
+        <option value="1000000">1 MB</option>
+      </select>
+      <label>Advanced - Starting Image Quality (0.9 recommended)</label>
+      <input type="range" id="startQuality" min="0.2" max="0.95" step="0.05" value="0.9">
+      <div class="row">
+        <button id="compressBtn">Compress PDF</button>
+        <a id="downloadBtn" class="button" disabled>Download Result</a>
+      </div>
+      <p class="note">Note: This tool rasterizes PDF pages to images and rebuilds a new PDF. Resulting PDF will be image-based (not searchable).</p>
+      <div id="log"></div>
+    </section>
+  </main>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.14.305/pdf.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="resizer.js"></script>
+</body>
+</html>

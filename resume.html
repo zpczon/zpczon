@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Professional Resume Generator - Z+ Cyber Zone</title>
+  <link rel="stylesheet" href="resume.css">
+</head>
+<body>
+  <h1>Professional Resume Generator</h1>
+  <form id="resumeForm">
+    <h2>Personal Information</h2>
+    <label>Full Name:</label><input type="text" id="name"><br>
+    <label>Father's Name:</label><input type="text" id="father"><br>
+    <label>Mother's Name:</label><input type="text" id="mother"><br>
+    <label>Date of Birth:</label><input type="date" id="dob"><br>
+    <label>Address:</label><input type="text" id="address"><br>
+    <label>Mobile:</label><input type="text" id="mobile"><br>
+    <label>Email:</label><input type="email" id="email"><br>
+    <label>Photo:</label><input type="file" id="photo" accept="image/*"><br>
+
+    <h2>Education</h2>
+    <label>10th:</label><br>
+    Passing Year: <input type="text" id="edu10Year"><br>
+    Board/University: <input type="text" id="edu10Board"><br>
+    Percentage: <input type="text" id="edu10Perc"><br><br>
+
+    <label>12th:</label><br>
+    Passing Year: <input type="text" id="edu12Year"><br>
+    Board/University: <input type="text" id="edu12Board"><br>
+    Percentage: <input type="text" id="edu12Perc"><br><br>
+
+    <label>Graduation:</label><br>
+    Passing Year: <input type="text" id="eduGradYear"><br>
+    Board/University: <input type="text" id="eduGradBoard"><br>
+    Percentage: <input type="text" id="eduGradPerc"><br><br>
+
+    <label>Post Graduation:</label><br>
+    Passing Year: <input type="text" id="eduPgYear"><br>
+    Board/University: <input type="text" id="eduPgBoard"><br>
+    Percentage: <input type="text" id="eduPgPerc"><br><br>
+
+    <h2>Career Objective</h2>
+    <textarea id="objective"></textarea><br>
+
+    <h2>Experience</h2>
+    <label>Company 1:</label><input type="text" id="expCompany1"><br>
+    <label>Role:</label><input type="text" id="expRole1"><br>
+    <label>Duration:</label><input type="text" id="expDuration1"><br>
+    <label>Responsibilities:</label><textarea id="expResp1"></textarea><br>
+
+    <label>Company 2:</label><input type="text" id="expCompany2"><br>
+    <label>Role:</label><input type="text" id="expRole2"><br>
+    <label>Duration:</label><input type="text" id="expDuration2"><br>
+    <label>Responsibilities:</label><textarea id="expResp2"></textarea><br>
+
+    <h2>Extra Qualifications / Certifications</h2>
+    <textarea id="extraQual"></textarea><br>
+
+    <h2>Languages</h2>
+    <label><input type="checkbox" id="langHindi"> Hindi</label><br>
+    <label><input type="checkbox" id="langEnglish"> English</label><br>
+
+    <h2>Hobbies / Interests</h2>
+    <textarea id="hobbies"></textarea><br>
+
+    <h2>Declaration</h2>
+    <textarea id="declaration">I hereby declare that the above information is true to the best of my knowledge.</textarea><br>
+
+    <h2>Signature</h2>
+    <label>Place:</label><input type="text" id="place"><br>
+    <label>Date:</label><input type="date" id="date"><br>
+    <label>Signature (upload):</label><input type="file" id="signature" accept="image/*"><br>
+
+    <button type="button" onclick="generatePDF()">Download Resume</button>
+  </form>
+
+  <!-- Resume Output -->
+  <div id="resumeOutput" style="display:none; max-width:700px; font-size:12px;">
+    <div style="display:flex; justify-content:space-between; align-items:flex-start;">
+      <!-- Left Side (Details) -->
+      <div style="flex:70%;">
+        <h1 style="color:#0b63d6; font-size:18px; font-weight:bold;" id="outName"></h1>
+        <p><b class="key">Father's Name:</b> <span id="outFather"></span></p>
+        <p><b class="key">Mother's Name:</b> <span id="outMother"></span></p>
+        <p><b class="key">Date of Birth:</b> <span id="outDOB"></span></p>
+        <p><b class="key">Address:</b> <span id="outAddress"></span></p>
+        <p><b class="key">Mobile:</b> <span id="outMobile"></span> | <b class="key">Email:</b> <span id="outEmail"></span></p>
+      </div>
+      <!-- Right Side (Photo) -->
+      <div style="flex:30%; text-align:right;">
+        <img id="outPhoto" style="width:120px; height:120px; border:1px solid #ddd; padding:5px;">
+      </div>
+    </div>
+
+    <h3 class="key">Career Objective</h3>
+    <p id="outObjective"></p>
+
+    <h3 class="key">Education</h3>
+    <table border="1" cellspacing="0" cellpadding="5" width="100%">
+      <tr><th>Class</th><th>Passing Year</th><th>Board/University</th><th>Percentage</th></tr>
+      <tr><td>10th</td><td id="outEdu10Year"></td><td id="outEdu10Board"></td><td id="outEdu10Perc"></td></tr>
+      <tr><td>12th</td><td id="outEdu12Year"></td><td id="outEdu12Board"></td><td id="outEdu12Perc"></td></tr>
+      <tr><td>Graduation</td><td id="outEduGradYear"></td><td id="outEduGradBoard"></td><td id="outEduGradPerc"></td></tr>
+      <tr><td>Post Graduation</td><td id="outEduPgYear"></td><td id="outEduPgBoard"></td><td id="outEduPgPerc"></td></tr>
+    </table>
+
+    <h3 class="key">Experience</h3>
+    <table border="1" cellspacing="0" cellpadding="5" width="100%">
+      <tr><th>Company</th><th>Role</th><th>Duration</th><th>Responsibilities</th></tr>
+      <tr><td id="outExpCompany1"></td><td id="outExpRole1"></td><td id="outExpDuration1"></td><td id="outExpResp1"></td></tr>
+      <tr><td id="outExpCompany2"></td><td id="outExpRole2"></td><td id="outExpDuration2"></td><td id="outExpResp2"></td></tr>
+    </table>
+
+    <h3 class="key">Extra Qualifications / Certifications</h3>
+    <p id="outExtraQual"></p>
+
+    <h3 class="key">Languages</h3>
+    <p id="outLanguages"></p>
+
+    <h3 class="key">Hobbies / Interests</h3>
+    <p id="outHobbies"></p>
+
+    <h3 class="key">Declaration</h3>
+    <p id="outDeclaration"></p>
+
+    <p style="margin-top:40px;">
+      <b class="key">Place:</b> <span id="outPlace"></span><br>
+      <b class="key">Date:</b> <span id="outDate"></span><br>
+    </p>
+    <div><img id="outSignature" style="width:120px;height:60px;"></div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <script src="resume.js"></script>
+</body>
+</html>
